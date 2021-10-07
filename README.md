@@ -1,6 +1,8 @@
 # SOC_Score
 Inventing the "SOC Score" for Azure Sentinel.
 
+**This will eventually be a Workbook for Azure Sentinel that can be viewed daily to get a pulse on workload and security concerns.
+
 Much like a "credit" score, security teams can perform activities to improve the number.
 
 How can my team improve our SOC Score?
