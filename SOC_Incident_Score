@@ -1,0 +1,6 @@
+//SOC Incident Score
+
+SecurityIncident
+| extend email_ = tostring(Owner.email)
+| summarize New_Count=count(TimeGenerated >= ago(24h) and Status == "New"), Open_Count=count(TimeGenerated >= ago(90d) and Status != "Closed"), Closed_Count=count(TimeGenerated >= ago(90d) and Status == "Closed"), Unassigned_Count=count(TimeGenerated >= ago(24h) and Status == "New" or Status == "Active" and isempty(email_))
+| project New_Count + Open_Count + Closed_Count + Unassigned_Count
