@@ -1,6 +1,4 @@
 # SOC_Score
-Building the SOC Score for Azure Sentinel
-
 Inventing the "SOC Score" for Azure Sentinel.
 
 Much like a "credit" score, security teams can perform activities to improve the number.
