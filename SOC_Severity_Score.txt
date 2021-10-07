@@ -1,0 +1,7 @@
+//SOC Severity Score
+
+SecurityIncident
+| where TimeGenerated >= (90d)
+| where Status == "New" or Status == "Active"
+| summarize Info_Value=count(Severity == "Informational") * 2, Low_Value=count(Severity == "Low") * 3, Medium_Value=count(Severity == "Medium") * 4, High_Value=count(Severity == "High") * 5
+| project Info_Value + Low_Value + Medium_Value + High_Value
