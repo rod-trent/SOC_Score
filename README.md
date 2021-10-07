@@ -21,7 +21,8 @@ If it's difficult to maintain a good score, it's an indication that it might be 
 * Assign security duties full time (instead of shared responsibility)
 * Hire new security team members
 * Review and evolve procedures
-* Addressing the Incidents with higher SOC Severity will improve the SOC Severity Score.
+
+Addressing the Incidents with higher SOC Severity will improve the SOC Severity Score.
 
 Closing out more current cases and at least assigning ownership will improve the SOC Incident Score.
 
