@@ -1,7 +1,8 @@
 //SOC Severity Score
 
 SecurityIncident
-| where TimeGenerated >= (90d)
+| where TimeGenerated > startofday(ago(90d))
 | where Status != "Closed"
+| where ProviderName == "Azure Sentinel" // Commenting out this line provides SecurityIncidents from both Azure Sentinel and Microsoft 365 Defender Incidents.
 | summarize Info_Value=count(Severity == "Informational") * 2, Low_Value=count(Severity == "Low") * 3, Medium_Value=count(Severity == "Medium") * 4, High_Value=count(Severity == "High") * 5
 | project Info_Value + Low_Value + Medium_Value + High_Value
