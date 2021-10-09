@@ -2,5 +2,7 @@
 
 SecurityIncident
 | extend email_ = tostring(Owner.email)
-| summarize New_Count=count(TimeGenerated >= ago(24h) and Status == "New"), Open_Count=count(TimeGenerated >= ago(90d) and Status != "Closed"), Closed_Count=count(TimeGenerated >= ago(90d) and Status == "Closed"), Unassigned_Count=count(TimeGenerated >= ago(24h) and Status != "Closed" and isempty(email_))
+| where ProviderName == "Azure Sentinel" // Commenting out this line provides SecurityIncidents from both Azure Sentinel and Microsoft 365 Defender Incidents.
+| summarize TimeGenerated = arg_max(TimeGenerated, Severity, Status, email_) by IncidentNumber
+| summarize New_Count=count(TimeGenerated > ago(1d) and Status == "New"), Open_Count=count(TimeGenerated > ago(90d) and Status != "Closed"), Closed_Count=count(TimeGenerated > ago(90d) and Status == "Closed"), Unassigned_Count=count(TimeGenerated > ago(1d) and Status != "Closed" and isempty(email_))
 | project New_Count + Open_Count + Closed_Count + Unassigned_Count
